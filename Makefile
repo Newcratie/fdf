@@ -34,6 +34,11 @@ SRC =\
      main.c \
 	 paint.c \
 	 algo.c \
+	 map.c \
+	 get_file.c \
+	 grid.c \
+	 put_grid.c \
+	 tools.c \
 
 INC = $(addprefix -I,$(D_INC))
 LIB_INC = $(addprefix -I,$(addprefix $(D_LIB)/,$(D_INC)))

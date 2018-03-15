@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/10 16:22:42 by abbenham          #+#    #+#             */
-/*   Updated: 2018/03/15 14:26:26 by abbenham         ###   ########.fr       */
+/*   Created: 2018/03/15 08:27:06 by abbenham          #+#    #+#             */
+/*   Updated: 2018/03/15 08:32:31 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		main(int ac, char **av)
+int		destroy_fdf_int(char *str)
 {
-	t_mlx	map;
-	t_grid	grid;
+	ft_printf(str);
+	return (0);
+}
 
-	if (ac == 2)
-	{
-		if (!(get_grid(&grid, &map, get_file(&grid, &map, av[1]))))
-			return (0);
-		map_init(&map);
-		put_grid(&map,&grid);
-		render_map(&map);
-	}
-	else
-		return (destroy_fdf_int("usage: fdf [filename]\n"));
+void	*destroy_fdf_ptr(char *str)
+{
+	ft_printf(str);
+	return (NULL);
 }
