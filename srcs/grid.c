@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 09:27:47 by abbenham          #+#    #+#             */
-/*   Updated: 2018/03/15 14:22:53 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/03/20 15:47:15 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int			get_tablen(char **s)
 		tablen++;
 	return (tablen);
 }
-
 
 int			*atoi_tab(char **s, int len)
 {
@@ -61,7 +60,9 @@ int			get_grid(t_grid *grid, t_mlx *map, char **tab)
 	i = 0;
 	while (grid->tab[0][i])
 		i++;
-	map->x = grid->x * ZOOM + PAD * 2;
-	map->y = grid->y * ZOOM + PAD * 2;
+	map->x = (grid->x - 1) * DIS + PAD * 2;
+	map->y = (grid->y - 1) * DIS + PAD * 2;
+	grid->cur_x = 0;
+	grid->cur_y = 0;
 	return (1);
 }

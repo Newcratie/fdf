@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 00:36:51 by abbenham          #+#    #+#             */
-/*   Updated: 2018/03/15 14:25:19 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/03/20 15:46:58 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define ZOOM 20
 # define PAD 60
 # define COLOR_LINE 0x9C161A
-# define COLOR_SCREEN 0x5ffff
+# define COLOR_SCREEN 0x0
 
 
 typedef	struct	s_grid
@@ -29,6 +29,8 @@ typedef	struct	s_grid
 	int		**tab;
 	int		x;
 	int		y;
+	int		cur_x;
+	int		cur_y;
 }				t_grid;
 
 typedef struct	s_line
