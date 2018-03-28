@@ -32,13 +32,13 @@ F_MLX = -framework OpenGL -framework AppKit -lmlx
 # sources
 SRC =\
      main.c \
-	 paint.c \
-	 algo.c \
-	 map.c \
-	 get_file.c \
-	 grid.c \
-	 put_grid.c \
-	 tools.c \
+     screen.c \
+     write_image.c \
+     mlx_init_render.c \
+     get_file.c \
+     get_fdf.c \
+     put_fdf.c \
+     errors.c \
 
 INC = $(addprefix -I,$(D_INC))
 LIB_INC = $(addprefix -I,$(addprefix $(D_LIB)/,$(D_INC)))

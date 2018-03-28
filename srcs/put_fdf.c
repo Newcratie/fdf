@@ -23,10 +23,10 @@ static void			put_grid_horizon(t_mlx *map, t_grid *grid)
 	y = grid->cur_y;
 	while (x < grid->x - 1)
 	{
-		ln.xa = x * DIS + PAD;
-		ln.ya = y * DIS + PAD;
-		ln.xb = (x + 1) * DIS + PAD;
-		ln.yb = y * DIS + PAD;
+		ln.xa = (x - y) * DIS + PAD;
+		ln.ya = (x + y) * DIS + PAD;
+		ln.xb = (x - y + 1) * DIS + PAD;
+		ln.yb = (x + y + 1) * DIS + PAD;
 		ln.color = rand();
 		put_line(&ln,  map, put_pixel);
 		x++;
@@ -43,17 +43,17 @@ static void			put_grid_vertical(t_mlx *map, t_grid *grid)
 	y = grid->cur_y;
 	while (y < grid->y - 1)
 	{
-		ln.xa = x * DIS + PAD;
-		ln.ya = y * DIS + PAD;
-		ln.xb = x * DIS + PAD;
-		ln.yb = (y + 1) * DIS + PAD;
+		ln.xa = (x - y ) * DIS + PAD;
+		ln.ya = (x + y + 1 ) * DIS + PAD;
+		ln.xb = (x - y + 1) * DIS + PAD;
+		ln.yb = (y + x) * DIS + PAD;
 		ln.color = rand();
 		put_line(&ln,  map, put_pixel);
 		y++;
 	}
 }
 
-void			put_grid(t_mlx *map, t_grid *grid)
+void			put_fdf(t_mlx *map, t_grid *grid)
 {
 	int		x;
 	int		y;

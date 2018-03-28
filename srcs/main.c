@@ -12,19 +12,23 @@
 
 #include "fdf.h"
 
-int		main(int ac, char **av)
+int		fdf(char *file)
 {
 	t_mlx	map;
 	t_grid	grid;
 
+	if (!(get_grid(&grid, &map, get_file(&grid, &map, file))))
+		return (0);
+	map_init(&map);
+	put_fdf(&map, &grid);
+	render_map(&map);
+	return (1);
+}
+
+int		main(int ac, char **av)
+{
 	if (ac == 2)
-	{
-		if (!(get_grid(&grid, &map, get_file(&grid, &map, av[1]))))
-			return (0);
-		map_init(&map);
-		put_grid(&map, &grid);
-		render_map(&map);
-	}
+		fdf(av[1]);
 	else
 		return (destroy_fdf_int("usage: fdf [filename]\n"));
 }

@@ -45,8 +45,8 @@ char	**get_file(t_grid *grid, t_mlx *map, char *file)
 		tab = dupli_tab(tab, readed, i);
 	}
 	i = 0;
-	while (tab[i])
-		ft_putendl(tab[i++]);
+//	while (tab[i])
+//		ft_putendl(tab[i++]);
 	if (!parsing_fdf(grid, map, tab))
 		return (NULL);
 	return (tab);

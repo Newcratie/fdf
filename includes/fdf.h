@@ -17,9 +17,9 @@
 # include "mlx.h"
 # include "get_next_line.h"
 # include <fcntl.h>
-# define DIS 30
+# define DIS 15
 # define ZOOM 20
-# define PAD 60
+# define PAD 300
 # define COLOR_LINE 0x9C161A
 # define COLOR_SCREEN 0x0
 
@@ -59,7 +59,7 @@ char		*gradient(char *img, int sz, int x, int y);
 char		*screen(t_mlx *map, int color);
 void		put_pixel(t_mlx *map, int x, int y, int color);
 void		put_line(t_line *ln, t_mlx *map, void(*f)(t_mlx *,int, int, int));
-void		put_grid(t_mlx *map, t_grid *grid);
+void		put_fdf(t_mlx *map, t_grid *grid);
 
 void		map_init(t_mlx *x);
 void		render_map(t_mlx *map);
@@ -67,9 +67,9 @@ void		render_map(t_mlx *map);
 char		**get_file(t_grid *grid, t_mlx *map, char *file);
 char 		**dupli_tab(char **tab, char *s, int len);
 
-int			get_grid(t_grid *grid, t_mlx *map, char **tab);
+int		get_grid(t_grid *grid, t_mlx *map, char **tab);
 
-int			destroy_fdf_int(char *str);
+int		destroy_fdf_int(char *str);
 void		*destroy_fdf_ptr(char *str);
 
 #endif

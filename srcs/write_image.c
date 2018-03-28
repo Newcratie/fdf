@@ -19,6 +19,7 @@ void		put_pixel(t_mlx *map, int x, int y, int color)
 	map->img[map->sz * y + (x * 4) + 2] = color >> 16;
 	map->img[map->sz * y + (x * 4) + 3] = 0;
 }
+
 static void		put_vertical(t_line *ln, t_mlx *map, void (*f)(t_mlx *, int, int, int))
 {
 	int	lx;
@@ -46,43 +47,60 @@ static void		put_vertical(t_line *ln, t_mlx *map, void (*f)(t_mlx *, int, int, i
 	}
 }
 
-static void		put_horizontal(t_line *ln, t_mlx *map, void (*f)(t_mlx *, int, int, int))
+void		put_line(t_line *ln, t_mlx *map, void (*f)(t_mlx *, int, int, int))
 {
-	int	lx;
-	int	ly;
-	int	x;
-	int	y;
-	int	cumul;
+	int dx, dy, i, e;
+	int incx, incy, inc1, inc2;
+	int x,y;
 
-	x = ln->xa;
-	y = ln->ya;
-	lx = ln->xb - ln->xa;
-	ly = ln->yb - ln->ya;
-	f(map, x, y, ln->color);
-	cumul = lx / 2;
-	x = ln->xa + 1;
-	while (x < ln->xb)
+	dx = ln->xb - ln->xa;
+	dy = ln->yb - ln->ya;
+
+	if(dx < 0) dx = -dx;
+	if(dy < 0) dy = -dy;
+	incx = 1;
+	if(ln->xb < ln->xa) incx = -1;
+	incy = 1;
+	if(ln->yb < ln->ya) incy = -1;
+	x=ln->xa;
+	y=ln->ya;
+
+	if(dx > dy)
 	{
-		cumul += ly;
-		if (cumul >= lx)
+		f(map, x, y, ln->color);
+		e = 2*dy - dx;
+		inc1 = 2*( dy -dx);
+		inc2 = 2*dy;
+		for(i = 0; i < dx; i++)
 		{
-			cumul -= lx;
-			y += 1;
+			if(e >= 0)
+			{
+				y += incy;
+				e += inc1;
+			}
+			else e += inc2;
+			x += incx;
+			f(map, x, y, ln->color);
 		}
-		f(map, x++, y, ln->color);
+	}
+	else
+	{
+		f(map, x, y, ln->color);
+		e = 2*dx - dy;
+		inc1 = 2*( dx - dy);
+		inc2 = 2*dx;
+		for(i = 0; i < dy; i++)
+		{
+			if(e >= 0)
+			{
+				x += incx;
+				e += inc1;
+			}
+			else e += inc2;
+			y += incy;
+			f(map, x, y, ln->color);
+		}
 	}
 }
 
-void		put_line(t_line *ln, t_mlx *map, void (*f)(t_mlx *, int, int, int))
-{
-	int	lx;
-	int	ly;
-
-	lx = ln->xb - ln->xa;
-	ly = ln->yb - ln->ya;
-	if (lx > ly)
-		put_horizontal(ln, map, f);
-	else
-		put_vertical(ln, map, f);
-}
 
