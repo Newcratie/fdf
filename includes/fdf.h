@@ -17,9 +17,10 @@
 # include "mlx.h"
 # include "get_next_line.h"
 # include <fcntl.h>
-# define DIS 15
+# define DIS 16
+# define DIS_Y 10
 # define ZOOM 20
-# define PAD 300
+# define PAD 180
 # define COLOR_LINE 0x9C161A
 # define COLOR_SCREEN 0x0
 

@@ -14,10 +14,13 @@
 
 void		put_pixel(t_mlx *map, int x, int y, int color)
 {
-	map->img[map->sz * y + (x * 4)] = color;
-	map->img[map->sz * y + (x * 4) + 1] = color >> 8;
-	map->img[map->sz * y + (x * 4) + 2] = color >> 16;
-	map->img[map->sz * y + (x * 4) + 3] = 0;
+	if (map->sz * (map->y + 1) > map->sz * y + (x * 4) + 3)
+	{
+		map->img[map->sz * y + (x * 4)] = color;
+		map->img[map->sz * y + (x * 4) + 1] = color >> 8;
+		map->img[map->sz * y + (x * 4) + 2] = color >> 16;
+		map->img[map->sz * y + (x * 4) + 3] = 0;
+	}
 }
 
 static void		put_vertical(t_line *ln, t_mlx *map, void (*f)(t_mlx *, int, int, int))
@@ -101,6 +104,7 @@ void		put_line(t_line *ln, t_mlx *map, void (*f)(t_mlx *, int, int, int))
 			f(map, x, y, ln->color);
 		}
 	}
+	printf("map->sz: %d\n ", map->sz);
 }
 
 
