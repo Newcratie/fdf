@@ -12,7 +12,6 @@
 
 #include "fdf.h"
 
-
 static void			put_grid_horizon(t_mlx *map, t_grid *grid)
 {
 	int		x;
@@ -24,9 +23,9 @@ static void			put_grid_horizon(t_mlx *map, t_grid *grid)
 	while (x < grid->x - 1)
 	{
 		ln.xa = (x - y) * DIS + PAD;
-		ln.ya = (x + y) * DIS_Y + PAD;
+		ln.ya = (x + y) * DIS_Y + PAD - grid->tab[y][x] * EXT;
 		ln.xb = (x - y + 1) * DIS + PAD;
-		ln.yb = (x + y + 1) * DIS_Y + PAD;
+		ln.yb = (x + y + 1) * DIS_Y + PAD - grid->tab[y][x + 1] * EXT;
 		ln.color = COLOR_LINE;
 		put_line(&ln,  map, put_pixel);
 		x++;
@@ -44,10 +43,10 @@ static void			put_grid_vertical(t_mlx *map, t_grid *grid)
 	while (y < grid->y - 1)
 	{
 		ln.xa = (x - y ) * DIS + PAD - DIS;
-		ln.ya = (x + y + 1) * DIS_Y + PAD;
+		ln.ya = (x + y + 1) * DIS_Y + PAD - grid->tab[y + 1][x] * EXT;
 		ln.xb = (x - y + 1) * DIS + PAD - DIS;
-		ln.yb = (y + x) * DIS_Y + PAD;
-		ln.color = 0x444444;
+		ln.yb = (y + x) * DIS_Y + PAD - grid->tab[y][x] * EXT;
+		ln.color = COLOR_LINE;
 		put_line(&ln,  map, put_pixel);
 		y++;
 	}

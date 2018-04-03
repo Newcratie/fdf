@@ -28,8 +28,8 @@ int			*atoi_tab(char **s, int len)
 	int		tablen;
 	int		i;
 
-	if (len != get_tablen(s))
-		return (destroy_fdf_ptr("BULLishhh\n"));
+	//if (len != get_tablen(s))
+	//	return (destroy_fdf_ptr(ft_atoi()));
 	i = 0;
 	intab = (int *)malloc(sizeof(int) * len);
 	while (i < len)
@@ -54,7 +54,7 @@ int			get_grid(t_grid *grid, t_mlx *map, char **tab)
 	while (i < grid->y)
 	{
 		if (!(grid->tab[i] = atoi_tab(ft_strsplit(tab[i] , ' '), grid->x)))
-			return (0);
+			;
 		i++;
 	}
 	i = 0;

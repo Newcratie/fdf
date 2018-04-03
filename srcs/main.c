@@ -22,6 +22,10 @@ int		fdf(char *file)
 	map_init(&map);
 	put_fdf(&map, &grid);
 	render_map(&map);
+	free(grid.tab);
+	int	mlx_destroy_window(void *mlx_ptr, void *win_ptr);
+
+	//mlx_destroy_image(void *mlx_ptr, void *img_ptr);
 	return (1);
 }
 

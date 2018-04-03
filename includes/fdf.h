@@ -18,10 +18,11 @@
 # include "get_next_line.h"
 # include <fcntl.h>
 # define DIS 16
-# define DIS_Y 10
+# define DIS_Y 9
 # define ZOOM 20
 # define PAD 180
-# define COLOR_LINE 0x9C161A
+# define EXT 2.3
+# define COLOR_LINE 0xffffff
 # define COLOR_SCREEN 0x0
 
 
@@ -49,11 +50,11 @@ typedef struct	s_mlx
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img_ptr;
-	int		x;
-	int		y;
-	int		bpp;
-	int		sz;
-	int		endian;
+	int	x;
+	int	y;
+	int	bpp;
+	int	sz;
+	int	endian;
 }				t_mlx;
 
 char		*gradient(char *img, int sz, int x, int y);

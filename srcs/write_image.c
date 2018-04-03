@@ -104,7 +104,6 @@ void		put_line(t_line *ln, t_mlx *map, void (*f)(t_mlx *, int, int, int))
 			f(map, x, y, ln->color);
 		}
 	}
-	printf("map->sz: %d\n ", map->sz);
 }
 
 
