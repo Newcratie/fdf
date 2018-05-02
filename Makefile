@@ -16,6 +16,7 @@ LOG_WHITE		= \033[1;37m
 # comp
 NAME = fdf
 CC = clang
+LIBCC = make -C ../libft
 CCFLAGS = -Wall -Wextra -Werror #-fsanitize=adress -g
 
 
@@ -48,10 +49,15 @@ SRCS = $(addprefix $(D_SRC)/,$(SRC))
 # special chars
 all: $(NAME)
 
-$(NAME): comp
+libft: 
+	$(MAKE) -C ../libft
 
-comp:
+$(NAME): libft comp
+
+comp: 
 	$(CC) -o $(NAME) $(SRCS) $(INC) $(LIB_INC) $(MLX_INC) -L$(D_LIB) -L$(D_MLX) $(F_LIB) $(F_MLX)
+
+
 
 clean:
 	rm -Rf $(NAME)
