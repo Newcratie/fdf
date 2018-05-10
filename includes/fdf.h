@@ -50,6 +50,7 @@ typedef struct	s_mlx
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img_ptr;
+	t_grid	*grid;
 	int	x;
 	int	y;
 	int	bpp;

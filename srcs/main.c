@@ -12,20 +12,31 @@
 
 #include "fdf.h"
 
+int		exit_map(int key, t_mlx *map)
+{
+	if (key == 53)
+	{
+		free(map->grid->tab);
+		mlx_destroy_window(map->mlx_ptr, map->win_ptr);
+		mlx_destroy_image(map->mlx_ptr, map->img_ptr);
+		exit (0);
+	}
+	return (0);
+}
+
 int		fdf(char *file)
 {
-	t_mlx	map;
 	t_grid	grid;
+	t_mlx	map;
 
+	map.grid = &grid;
 	if (!(get_grid(&grid, &map, get_file(&grid, &map, file))))
 		return (0);
 	map_init(&map);
 	put_fdf(&map, &grid);
-	render_map(&map);
-	free(grid.tab);
-	int	mlx_destroy_window(void *mlx_ptr, void *win_ptr);
 
-	//mlx_destroy_image(void *mlx_ptr, void *img_ptr);
+	mlx_key_hook(map.win_ptr, exit_map, (void*)&map);
+	render_map(&map);
 	return (1);
 }
 
