@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 00:36:51 by abbenham          #+#    #+#             */
-/*   Updated: 2018/03/20 15:46:58 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/05/10 15:36:02 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ typedef struct	s_line
 	int		ya;
 	int		yb;
 	int		color;
+	int		dx;
+	int		dy;
+	int		i;
+	int		e;
+	int		incx;
+	int		incy;
+	int		inc1;
+	int		inc2;
+	int		x;
+	int		y;
 }				t_line;
 
 typedef struct	s_mlx

@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 09:27:47 by abbenham          #+#    #+#             */
-/*   Updated: 2018/03/20 15:47:15 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/05/10 17:03:18 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int			*atoi_tab(char **s, int len)
 	int		tablen;
 	int		i;
 
-	//if (len != get_tablen(s))
-	//	return (destroy_fdf_ptr(ft_atoi()));
+	if (len != get_tablen(s))
+		return (destroy_fdf_ptr("get fdf"));
 	i = 0;
 	intab = (int *)malloc(sizeof(int) * len);
 	while (i < len)
@@ -43,7 +43,7 @@ int			*atoi_tab(char **s, int len)
 int			get_grid(t_grid *grid, t_mlx *map, char **tab)
 {
 	int		i;
-	char 	**tmp;
+	char	**tmp;
 
 	i = 0;
 	if (!tab)
@@ -53,7 +53,7 @@ int			get_grid(t_grid *grid, t_mlx *map, char **tab)
 	grid->tab[grid->y] = 0;
 	while (i < grid->y)
 	{
-		if (!(grid->tab[i] = atoi_tab(ft_strsplit(tab[i] , ' '), grid->x)))
+		if (!(grid->tab[i] = atoi_tab(ft_strsplit(tab[i], ' '), grid->x)))
 			;
 		i++;
 	}

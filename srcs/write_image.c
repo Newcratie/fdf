@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:27:38 by abbenham          #+#    #+#             */
-/*   Updated: 2018/05/10 15:33:29 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/05/10 15:53:26 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,69 +23,71 @@ void		put_pixel(t_mlx *map, int x, int y, int color)
 	}
 }
 
-void		put_line(t_line *ln, t_mlx *map, void (*f)(t_mlx *, int, int, int))
+void		put_line_horizontal(t_line *ln, t_mlx *map,
+		void (*f)(t_mlx *, int, int, int))
 {
-	int dx;
-    int	dy;
-	int i;
-	int e;
-	int incx;
-	int incy;
-	int inc1;
-	int inc2;
-	int x;
-	int y;
+	f(map, ln->x, ln->y, ln->color);
+	ln->e = 2 * ln->dy - ln->dx;
+	ln->inc1 = 2 * (ln->dy - ln->dx);
+	ln->inc2 = 2 * ln->dy;
+	ln->i = 0;
+	while (ln->i < ln->dx)
+	{
+		if (ln->e >= 0)
+		{
+			ln->y += ln->incy;
+			ln->e += ln->inc1;
+		}
+		else
+			ln->e += ln->inc2;
+		ln->x += ln->incx;
+		f(map, ln->x, ln->y, ln->color);
+		ln->i++;
+	}
+}
 
-	dx = ln->xb - ln->xa;
-	dy = ln->yb - ln->ya;
+void		put_line_vertical(t_line *ln, t_mlx *map,
+		void (*f)(t_mlx *, int, int, int))
+{
+	f(map, ln->x, ln->y, ln->color);
+	ln->e = 2 * ln->dx - ln->dy;
+	ln->inc1 = 2 * (ln->dx - ln->dy);
+	ln->inc2 = 2 * ln->dx;
+	ln->i = 0;
+	while (ln->i < ln->dy)
+	{
+		if (ln->e >= 0)
+		{
+			ln->x += ln->incx;
+			ln->e += ln->inc1;
+		}
+		else
+			ln->e += ln->inc2;
+		ln->y += ln->incy;
+		f(map, ln->x, ln->y, ln->color);
+		ln->i++;
+	}
+}
 
-	if (dx < 0)
-		dx = -dx;
-	if (dy < 0)
-		dy = -dy;
-	incx = 1;
+void		put_line(t_line *ln, t_mlx *map,
+		void (*f)(t_mlx *, int, int, int))
+{
+	ln->dx = ln->xb - ln->xa;
+	ln->dy = ln->yb - ln->ya;
+	if (ln->dx < 0)
+		ln->dx = -ln->dx;
+	if (ln->dy < 0)
+		ln->dy = -ln->dy;
+	ln->incx = 1;
 	if (ln->xb < ln->xa)
-		incx = -1;
-	incy = 1;
+		ln->incx = -1;
+	ln->incy = 1;
 	if (ln->yb < ln->ya)
-		incy = -1;
-	x=ln->xa;
-	y=ln->ya;
-
-	if (dx > dy)
-	{
-		f(map, x, y, ln->color);
-		e = 2 * dy - dx;
-		inc1 = 2 * ( dy -dx);
-		inc2 = 2 * dy;
-		for (i = 0; i < dx; i++)
-		{
-			if (e >= 0)
-			{
-				y += incy;
-				e += inc1;
-			}
-			else e += inc2;
-			x += incx;
-			f(map, x, y, ln->color);
-		}
-	}
+		ln->incy = -1;
+	ln->x = ln->xa;
+	ln->y = ln->ya;
+	if (ln->dx > ln->dy)
+		put_line_horizontal(ln, map, f);
 	else
-	{
-		f(map, x, y, ln->color);
-		e = 2 * dx - dy;
-		inc1 = 2 * (dx - dy);
-		inc2 = 2 * dx;
-		for (i = 0; i < dy; i++)
-		{
-			if (e >= 0)
-			{
-				x += incx;
-				e += inc1;
-			}
-			else e += inc2;
-			y += incy;
-			f(map, x, y, ln->color);
-		}
-	}
+		put_line_vertical(ln, map, f);
 }

@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 19:36:47 by abbenham          #+#    #+#             */
-/*   Updated: 2018/03/15 14:09:11 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/05/10 17:05:54 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int		parsing_fdf(t_grid *grid, t_mlx *map, char **tab)
 	return (1);
 }
 
-char	**get_file(t_grid *grid, t_mlx *map, char *file)
+char			**get_file(t_grid *grid, t_mlx *map, char *file)
 {
 	int		i;
 	int		fd;
@@ -37,7 +37,7 @@ char	**get_file(t_grid *grid, t_mlx *map, char *file)
 	char	**tab;
 
 	if (-1 == (fd = open(file, O_RDONLY)))
-			return (destroy_fdf_ptr("usage: fdf [filename]\n"));
+		return (destroy_fdf_ptr("usage: fdf [filename]\n"));
 	i = 0;
 	while (0 < (get_next_line(fd, &readed)))
 	{
@@ -45,14 +45,12 @@ char	**get_file(t_grid *grid, t_mlx *map, char *file)
 		tab = dupli_tab(tab, readed, i);
 	}
 	i = 0;
-//	while (tab[i])
-//		ft_putendl(tab[i++]);
 	if (!parsing_fdf(grid, map, tab))
 		return (NULL);
 	return (tab);
 }
 
-char	**dupli_tab(char **tab, char *s, int len)
+char			**dupli_tab(char **tab, char *s, int len)
 {
 	char	**new;
 	int		i;

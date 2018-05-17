@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   mlx_init_render.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/14 18:12:58 by abbenham          #+#    #+#             */
-/*   Updated: 2018/03/15 11:37:12 by abbenham         ###   ########.fr       */
+/*   Created: 2018/05/10 17:04:26 by abbenham          #+#    #+#             */
+/*   Updated: 2018/05/10 17:04:32 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void		map_init(t_mlx *x)
 	x->img = mlx_get_data_addr(x->img_ptr, &x->bpp, &x->sz, &x->endian);
 	screen(x, COLOR_SCREEN);
 }
-
 
 void		render_map(t_mlx *map)
 {

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grid.c                                             :+:      :+:    :+:   */
+/*   put_fdf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/14 20:59:56 by abbenham          #+#    #+#             */
-/*   Updated: 2018/03/20 16:38:26 by abbenham         ###   ########.fr       */
+/*   Created: 2018/05/10 16:59:53 by abbenham          #+#    #+#             */
+/*   Updated: 2018/05/10 16:59:56 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void			put_grid_horizon(t_mlx *map, t_grid *grid)
 {
 	int		x;
 	int		y;
-	t_line ln;
+	t_line	ln;
 
 	x = grid->cur_x;
 	y = grid->cur_y;
@@ -27,7 +27,7 @@ static void			put_grid_horizon(t_mlx *map, t_grid *grid)
 		ln.xb = (x - y + 1) * DIS + PAD;
 		ln.yb = (x + y + 1) * DIS_Y + PAD - grid->tab[y][x + 1] * EXT;
 		ln.color = COLOR_LINE;
-		put_line(&ln,  map, put_pixel);
+		put_line(&ln, map, put_pixel);
 		x++;
 	}
 }
@@ -36,23 +36,23 @@ static void			put_grid_vertical(t_mlx *map, t_grid *grid)
 {
 	int		x;
 	int		y;
-	t_line ln;
+	t_line	ln;
 
 	x = grid->cur_x;
 	y = grid->cur_y;
 	while (y < grid->y - 1)
 	{
-		ln.xa = (x - y ) * DIS + PAD - DIS;
+		ln.xa = (x - y) * DIS + PAD - DIS;
 		ln.ya = (x + y + 1) * DIS_Y + PAD - grid->tab[y + 1][x] * EXT;
 		ln.xb = (x - y + 1) * DIS + PAD - DIS;
 		ln.yb = (y + x) * DIS_Y + PAD - grid->tab[y][x] * EXT;
 		ln.color = COLOR_LINE;
-		put_line(&ln,  map, put_pixel);
+		put_line(&ln, map, put_pixel);
 		y++;
 	}
 }
 
-void			put_fdf(t_mlx *map, t_grid *grid)
+void				put_fdf(t_mlx *map, t_grid *grid)
 {
 	int		x;
 	int		y;
