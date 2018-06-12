@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 16:22:42 by abbenham          #+#    #+#             */
-/*   Updated: 2018/06/12 16:40:02 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/06/12 21:24:06 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,19 @@ int		exit_fdf(int key, t_mlx *map)
 
 int		parse_fdf(t_grid *grid, t_mlx *map, char *file)
 {
-	char 	**tab;
-	int		i = 0;
+	char	**tab;
 
 	if (!(tab = get_file(file)))
-		return (destroy_fdf_int("File not got\n"));
+		return (0);
 	if (!get_fdf(grid, map, tab))
+		return (0);
+	if (!test(map, grid))
 		return (0);
 	free_tab((void**)tab);
 	return (1);
 }
 
-int	display_fdf(t_grid *grid, t_mlx *map)
+int		display_fdf(t_grid *grid, t_mlx *map)
 {
 	map_init(map);
 	put_fdf(map, grid);
@@ -46,20 +47,18 @@ int	display_fdf(t_grid *grid, t_mlx *map)
 	return (1);
 }
 
-int fdf(char *file)
+int		fdf(char *file)
 {
 	t_grid	grid;
 	t_mlx	map;
 
+	init(&map, &grid);
 	map.grid = &grid;
 	if (!parse_fdf(&grid, &map, file))
 		return (0);
 	display_fdf(&grid, &map);
 	while (1)
-	{
-	//	ft_printf("while\n");
-	}
-	return (1);
+		return (1);
 }
 
 int		main(int ac, char **av)

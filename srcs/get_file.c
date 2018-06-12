@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/14 19:36:47 by abbenham          #+#    #+#             */
-/*   Updated: 2018/06/12 16:36:46 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/06/12 19:19:26 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ char			**get_file(char *file)
 		free(tab);
 		tab = new;
 	}
-	i = 0;
+	if (i == 0)
+		return (destroy_fdf_ptr("Invalid fdf\n"));
 	return (tab);
 }
 

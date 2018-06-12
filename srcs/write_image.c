@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 16:27:38 by abbenham          #+#    #+#             */
-/*   Updated: 2018/06/12 16:36:38 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/06/12 21:23:51 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		put_pixel(t_mlx *map, int x, int y, int color)
 {
-	if (map->sz * (map->y + 1) > map->sz * y + (x * 4) + 3)
+	if (map->sz * (map->y + 0) > map->sz * y + (x * 4) + 3)
 	{
 		map->img[map->sz * y + (x * 4)] = color;
 		map->img[map->sz * y + (x * 4) + 1] = color >> 8;

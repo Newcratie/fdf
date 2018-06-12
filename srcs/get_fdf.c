@@ -6,23 +6,25 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 09:27:47 by abbenham          #+#    #+#             */
-/*   Updated: 2018/06/12 16:36:44 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/06/12 19:54:55 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int			get_tablen(char **s)
+static int			get_tablen(char **s)
 {
 	int		tablen;
 
 	tablen = 0;
 	while (s[tablen])
+	{
 		tablen++;
+	}
 	return (tablen);
 }
 
-int			*atoi_tab(char **s, int len)
+static int			*atoi_tab(char **s, int len)
 {
 	int		*intab;
 	int		tablen;
@@ -30,7 +32,7 @@ int			*atoi_tab(char **s, int len)
 
 	i = 0;
 	if (len != get_tablen(s))
-		return (destroy_fdf_ptr("get fdf"));
+		return (destroy_fdf_ptr("Invalid fdf\n"));
 	if (!(intab = (int *)malloc(sizeof(int) * len)))
 		return (destroy_fdf_ptr("Malloc fail: atoi_tab\n"));
 	while (i < len)
@@ -43,21 +45,21 @@ int			*atoi_tab(char **s, int len)
 	return (intab);
 }
 
-void	init_data(t_grid *grid, t_mlx *map)
+static void			init_data(t_grid *grid, t_mlx *map)
 {
-	map->x = (grid->x - 1) * DIS + PAD * 2;
-	map->y = (grid->y - 1) * DIS + PAD * 2;
+	map->y = Y;
+	map->x = X;
 	grid->cur_x = 0;
 	grid->cur_y = 0;
 }
 
-int			get_fdf(t_grid *grid, t_mlx *map, char **tab)
+int					get_fdf(t_grid *grid, t_mlx *map, char **tab)
 {
 	int		i;
 	char	**tmp;
 
 	i = 0;
-	if (!tab)
+	if (!tab[0])
 		return (0);
 	while (tab[grid->y])
 		grid->y++;
