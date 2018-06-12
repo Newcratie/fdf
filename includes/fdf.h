@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/11 00:36:51 by abbenham          #+#    #+#             */
-/*   Updated: 2018/05/10 15:36:02 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/06/12 16:16:20 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,14 @@ void		put_fdf(t_mlx *map, t_grid *grid);
 void		map_init(t_mlx *x);
 void		render_map(t_mlx *map);
 
-char		**get_file(t_grid *grid, t_mlx *map, char *file);
+char		**get_file(char *file);
 char 		**dupli_tab(char **tab, char *s, int len);
 
-int		get_grid(t_grid *grid, t_mlx *map, char **tab);
+int		get_fdf(t_grid *grid, t_mlx *map, char **tab);
 
 int		destroy_fdf_int(char *str);
 void		*destroy_fdf_ptr(char *str);
+void	free_tab(void **tab);
+
 
 #endif

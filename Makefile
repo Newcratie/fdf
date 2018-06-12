@@ -40,6 +40,7 @@ SRC =\
      get_fdf.c \
      put_fdf.c \
      errors.c \
+	 utils.c \
 
 INC = $(addprefix -I,$(D_INC))
 LIB_INC = $(addprefix -I,$(addprefix $(D_LIB)/,$(D_INC)))

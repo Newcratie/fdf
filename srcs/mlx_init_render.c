@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 17:04:26 by abbenham          #+#    #+#             */
-/*   Updated: 2018/05/10 17:04:32 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/06/12 16:41:27 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ void		map_init(t_mlx *x)
 void		render_map(t_mlx *map)
 {
 	mlx_put_image_to_window(map->mlx_ptr, map->win_ptr, map->img_ptr, 0, 0);
-	mlx_string_put(map->mlx_ptr, map->win_ptr, 10, 10, 255, ft_itoa(map->sz));
 	mlx_loop(map->mlx_ptr);
 }

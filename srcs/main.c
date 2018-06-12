@@ -6,7 +6,7 @@
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/10 16:22:42 by abbenham          #+#    #+#             */
-/*   Updated: 2018/05/17 17:34:59 by abbenham         ###   ########.fr       */
+/*   Updated: 2018/06/12 16:40:02 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int		exit_fdf(int key, t_mlx *map)
 	if (key == 53)
 	{
 		free(map->grid->tab);
-		//free(map->grid);
-		//free(map);
 		mlx_destroy_window(map->mlx_ptr, map->win_ptr);
 		mlx_destroy_image(map->mlx_ptr, map->img_ptr);
 		exit(0);
@@ -26,18 +24,41 @@ int		exit_fdf(int key, t_mlx *map)
 	return (0);
 }
 
-int		fdf(char *file)
+int		parse_fdf(t_grid *grid, t_mlx *map, char *file)
+{
+	char 	**tab;
+	int		i = 0;
+
+	if (!(tab = get_file(file)))
+		return (destroy_fdf_int("File not got\n"));
+	if (!get_fdf(grid, map, tab))
+		return (0);
+	free_tab((void**)tab);
+	return (1);
+}
+
+int	display_fdf(t_grid *grid, t_mlx *map)
+{
+	map_init(map);
+	put_fdf(map, grid);
+	mlx_key_hook(map->win_ptr, exit_fdf, (void*)map);
+	render_map(map);
+	return (1);
+}
+
+int fdf(char *file)
 {
 	t_grid	grid;
 	t_mlx	map;
 
 	map.grid = &grid;
-	if (!(get_grid(&grid, &map, get_file(&grid, &map, file))))
+	if (!parse_fdf(&grid, &map, file))
 		return (0);
-	map_init(&map);
-	put_fdf(&map, &grid);
-	mlx_key_hook(map.win_ptr, exit_fdf, (void*)&map);
-	render_map(&map);
+	display_fdf(&grid, &map);
+	while (1)
+	{
+	//	ft_printf("while\n");
+	}
 	return (1);
 }
 

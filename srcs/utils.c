@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abbenham <newcratie@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/15 08:27:06 by abbenham          #+#    #+#             */
-/*   Updated: 2018/06/12 16:36:41 by abbenham         ###   ########.fr       */
+/*   Created: 2018/06/12 16:14:48 by abbenham          #+#    #+#             */
+/*   Updated: 2018/06/12 16:36:08 by abbenham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		destroy_fdf_int(char *str)
+void	free_tab(void **tab)
 {
-	ft_printf(str);
-	return (0);
-}
+	int	i;
 
-void	*destroy_fdf_ptr(char *str)
-{
-	ft_printf(str);
-	return (NULL);
+	i = 0;
+	while (tab[i])
+		free(tab[i++]);
+	free(tab);
 }
