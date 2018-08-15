@@ -12,13 +12,15 @@
 
 #include "fdf.h"
 
-void		map_init(t_mlx *x)
+int	map_init(t_mlx *x)
 {
-	x->mlx_ptr = mlx_init();
+	if (!(x->mlx_ptr = mlx_init()))
+		return(destroy_fdf_int("Init ml fail\n"));
 	x->win_ptr = mlx_new_window(x->mlx_ptr, x->x, x->y, "title");
 	x->img_ptr = mlx_new_image(x->mlx_ptr, x->x, x->y);
 	x->img = mlx_get_data_addr(x->img_ptr, &x->bpp, &x->sz, &x->endian);
 	screen(x, COLOR_SCREEN);
+	return (1);
 }
 
 void		render_map(t_mlx *map)

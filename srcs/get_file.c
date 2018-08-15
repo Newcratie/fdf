@@ -34,7 +34,8 @@ char			**get_file(char *file)
 		tab = new;
 	}
 	if (i == 0)
-		return (destroy_fdf_ptr("Invalid fdf\n"));
+		return (destroy_fdf_ptr("Invalid fdf (get file)\n"));
+	close(fd);
 	return (tab);
 }
 

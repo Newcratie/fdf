@@ -80,7 +80,7 @@ void			put_pixel(t_mlx *map, int x, int y, int color);
 void			put_line(t_line *ln, t_mlx *map, void(*f)(t_mlx *,int, int, int));
 void			put_fdf(t_mlx *map, t_grid *grid);
 
-void			map_init(t_mlx *x);
+int			map_init(t_mlx *x);
 void			render_map(t_mlx *map);
 
 char			**get_file(char *file);

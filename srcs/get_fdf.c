@@ -32,7 +32,7 @@ static int			*atoi_tab(char **s, int len)
 
 	i = 0;
 	if (len != get_tablen(s))
-		return (destroy_fdf_ptr("Invalid fdf\n"));
+		return (destroy_fdf_ptr("Invalid fdf (tablen)\n"));
 	if (!(intab = (int *)malloc(sizeof(int) * len)))
 		return (destroy_fdf_ptr("Malloc fail: atoi_tab\n"));
 	while (i < len)

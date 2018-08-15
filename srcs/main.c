@@ -32,15 +32,24 @@ int		parse_fdf(t_grid *grid, t_mlx *map, char *file)
 		return (0);
 	if (!get_fdf(grid, map, tab))
 		return (0);
+	ft_printf("===== Grid int =======\n");
+	for (int y = 0; y < grid->y; y++)
+	{
+		for (int x = 0; grid->x > x; x++)
+			ft_printf("%d ", grid->tab[y][x]);
+		ft_printf("\n");
+	}
 	if (!test(map, grid))
 		return (0);
+	ft_printf("======================\n");
 	free_tab((void**)tab);
 	return (1);
 }
 
 int		display_fdf(t_grid *grid, t_mlx *map)
 {
-	map_init(map);
+	if (!map_init(map))
+		return (0);
 	put_fdf(map, grid);
 	mlx_key_hook(map->win_ptr, exit_fdf, (void*)map);
 	render_map(map);
@@ -56,9 +65,9 @@ int		fdf(char *file)
 	map.grid = &grid;
 	if (!parse_fdf(&grid, &map, file))
 		return (0);
-	display_fdf(&grid, &map);
-	while (1)
-		return (1);
+	if (!display_fdf(&grid, &map))
+		return (0);
+	return (1);
 }
 
 int		main(int ac, char **av)
